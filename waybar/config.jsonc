@@ -1,0 +1,147 @@
+// -*- mode: jsonc -*-
+{
+    // "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    "height": 30, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 4, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/window"
+    ],
+    "modules-right": [
+        //"custom/playerctl",
+        "pulseaudio",
+        "network",
+        "cpu",
+        "memory",
+        "temperature",
+        "backlight",
+        "battery",
+        "clock",
+        "tray",
+        "custom/power"
+    ],
+
+    "hyprland/workspaces": {
+        "format": "{icon} {name}", // możesz też dodać {icon}
+        "format-icons": {
+            "default": "",
+            "active": "",
+            "urgent": ""
+        },
+        "on-click": "activate",
+        "disable-scroll": false,
+        "sort-by-number": true
+    },
+
+    "hyprland/window": {
+        "format": "{}",
+        "icon": true,
+        "max-length": 80,
+        "separate-outputs": true,
+        "format-empty": ""
+    },
+    
+    "custom/playerctl": {
+        "format": "{}",
+        "max-length": 80,
+        "interval": 2,
+        "exec": "~/.config/waybar/scripts/playerctl-status.sh",
+        "return-type": "json",
+        "on-click": "playerctl play-pause",
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous"
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "{}% "
+    },
+    "temperature": {
+        "thermal-zone": 2,
+        "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        "format-critical": "{temperatureC}°C {icon}",
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": [""]
+    },
+    "backlight": {
+        "format": "{}% ",
+        "exec": "brightnessctl get | awk '{print int($1 / 255 * 100)}'",
+        "interval": 2,
+        "on-click": "brightnessctl set +5%",
+        "on-click-right": "brightnessctl set 5%-",
+        "tooltip": false
+    },
+    "battery": {
+        "bat": "BAT0",
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-full": "{capacity}% {icon}",
+        "format-charging": "{capacity}% 󰢜",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+  
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ⚠",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "on-click": "nm-connection-editor"
+    },
+
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+    "custom/power": {
+        "format": "⏻",
+        "tooltip": "Power Menu",
+        "on-click": "~/.config/waybar/scripts/power_menu.sh"
+    }
+}
