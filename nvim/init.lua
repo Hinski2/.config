@@ -1,2 +1,1 @@
-vim.g.mapleader = " "
-vim.o.relativenumber = true
+require("hinski2")
