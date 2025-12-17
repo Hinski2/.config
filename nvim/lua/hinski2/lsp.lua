@@ -10,11 +10,12 @@ local on_attach = function(_, bufnr)
     local opts = { buffer = bufnr, silent = true, noremap = true }
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)         -- go to definition
     vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)         -- go to reference
-    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)     -- rename
-    vim.keymap.set("n", "<C-space>", vim.lsp.buf.code_action, opts) -- code action
+    vim.keymap.set("n", "<Leader>rn", vim.lsp.buf.rename, opts)     -- rename
+    vim.keymap.set("n", "<Leader>f", vim.lsp.buf.code_action, opts) -- code action
     vim.keymap.set("n", "<Leader>a", vim.lsp.buf.hover, opts)       -- hower action
 end
 
+-- default 
 local servers = { "pyright", "lua_ls", "clangd", "rust_analyzer" }
 for _, server in ipairs(servers) do
     vim.lsp.config[server] = {
@@ -22,6 +23,7 @@ for _, server in ipairs(servers) do
     }
 end
 
+-- rust 
 vim.lsp.config.rust_analyzer = {
   on_attach = function(c, b)
     on_attach(c, b)
@@ -36,10 +38,12 @@ vim.lsp.config.rust_analyzer = {
         typeHints      = { enable = true },
         chainingHints  = { enable = true },
       },
+      completion = { autoimport = { enable = true } },
     },
   },
 }
 
+-- lua
 vim.lsp.config.lua_ls = {
   on_attach = on_attach,
   settings = {
@@ -49,6 +53,14 @@ vim.lsp.config.lua_ls = {
       telemetry = { enable = false },
     },
   },
+}
+
+-- c++ 
+vim.lsp.config.clangd = {
+    on_attach = on_attach,
+    init_options = {
+        fallbackFlags = {'--std=c++23'}
+    },
 }
 
 vim.lsp.enable(servers)

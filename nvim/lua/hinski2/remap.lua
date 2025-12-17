@@ -11,3 +11,6 @@ vim.keymap.set("i", "<C-H>", "<C-w>", { noremap = true })
 
 -- show error under the cursor
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { noremap = true, silent = true })
+
+-- make comment
+vim.keymap.set('x', '/', '<Plug>(comment_toggle_linewise_visual)')

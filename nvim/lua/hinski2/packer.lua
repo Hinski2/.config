@@ -13,9 +13,17 @@ return require('packer').startup(function(use)
   		requires = { {'nvim-lua/plenary.nvim'} }
 	}
 
+    -- themes 
+    local themes = { 
+        'catppuccin/nvim',
+        'rose-pine/neovim',
+    }
+
+    for _, repo in ipairs(themes) do
+        use(repo)
+    end
+
 	use ({
-        "catppuccin/nvim",
-		as = 'catppuccin',
 		config = function()
 			vim.cmd('colorscheme catppuccin')
 		end
@@ -39,5 +47,11 @@ return require('packer').startup(function(use)
     use { "saadparwaiz1/cmp_luasnip" }
     use { "L3MON4D3/LuaSnip" }
     use { "rafamadriz/friendly-snippets" }
+
+    -- better brackets
+    use { "windwp/nvim-autopairs" }
+
+    -- comments 
+    use { "numToStr/Comment.nvim"}
 
 end)
