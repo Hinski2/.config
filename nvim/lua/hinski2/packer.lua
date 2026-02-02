@@ -32,7 +32,6 @@ return require('packer').startup(function(use)
 	use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
 	use('nvim-treesitter/playground')
 	use('theprimeagen/harpoon')
-	use('mbbill/undotree')
 	use('tpope/vim-fugitive')
 
     use { "williamboman/mason.nvim" }
@@ -53,5 +52,17 @@ return require('packer').startup(function(use)
 
     -- comments 
     use { "numToStr/Comment.nvim"}
+
+    -- markdown
+    use({
+        "iamcco/markdown-preview.nvim",
+        run = function() vim.fn["mkdp#util#install"]() end,
+    })
+
+    -- file tree 
+    use {
+        'nvim-tree/nvim-tree.lua',
+        requires = { 'nvim-tree/nvim-web-devicons', },
+    }
 
 end)

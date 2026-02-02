@@ -1,0 +1,16 @@
+#!/bin/bash
+
+CONFIG_DIR="$HOME/.config/hypr"
+TARGET="$CONFIG_DIR/hyprland.conf"
+
+if [ "$1" == "intel" ]; then
+    cp "$CONFIG_DIR/intel.conf" "$TARGET"
+    echo "Switched Hyprland to Intel config."
+elif [ "$1" == "nvidia" ]; then
+    cp "$CONFIG_DIR/nvidia.conf" "$TARGET"
+    echo "Switched Hyprland to NVIDIA config."
+else
+    echo "Usage: $0 [intel|nvidia]"
+    exit 1
+fi
+
