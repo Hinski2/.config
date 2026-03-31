@@ -1,11 +1,8 @@
 #!/bin/bash
 
 DIRS=(
-    "$HOME/Programowanie/greatProjects"
-    "$HOME/Programowanie/school"
-    "$HOME/Programowanie/tutoriale"
-    "$HOME/Programowanie/competitive"
-    "$HOME"
+    "$HOME/Programowanie"
+    "$HOME/.config"
 )
 
 if [[ $# -eq 1 ]]; then

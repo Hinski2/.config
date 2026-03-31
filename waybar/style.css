@@ -5,8 +5,8 @@
 }
 
 window#waybar {
-    background-color: rgba(43, 48, 59, 0.5);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+    background-color: rgba(36, 31, 34, 0.95);
+    /* border-bottom: 3px solid rgba(100, 114, 125, 0.5); */
     color: #ffffff;
     transition-property: background-color;
     transition-duration: .5s;
@@ -105,7 +105,7 @@ button:hover {
 
 #window,
 #workspaces {
-    margin: 0 4px;
+    margin: 0 0px;
 }
 
 /* If workspaces is the leftmost module, omit left margin */
@@ -282,7 +282,7 @@ label:focus {
     background: #00b093;
     color: #740864;
     padding: 0 5px;
-    margin: 0 5px;
+    margin: 0 0px;
     min-width: 16px;
 }
 
